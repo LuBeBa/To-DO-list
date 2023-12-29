@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>To-Do Liste</title>
     <style>
-        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f4;
@@ -30,6 +29,7 @@
             margin: 0;
             padding: 20px;
             background-color: #ecf0f1;
+            border-bottom: 1px solid #bdc3c7;
         }
 
         ul {
@@ -64,6 +64,8 @@
             padding: 10px;
             margin: 10px;
             box-sizing: border-box;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
         }
 
         button {
@@ -75,6 +77,7 @@
             cursor: pointer;
             box-sizing: border-box;
             transition: background-color 0.3s;
+            border-radius: 4px;
         }
 
         button:hover {
@@ -84,7 +87,6 @@
         button.delete {
             background-color: #e74c3c;
             width: 40%;
-            border-radius: 5px;
         }
 
         button.delete:hover {
@@ -104,6 +106,11 @@
 </div>
 
 <script>
+    // Laden gespeicherter Aufgaben beim Seitenaufruf
+    window.onload = function () {
+        loadTasks();
+    };
+
     function addTask() {
         var taskInput = document.getElementById('newTask');
         var taskText = taskInput.value;
@@ -129,12 +136,60 @@
         deleteButton.textContent = 'Löschen';
         deleteButton.onclick = function () {
             taskList.removeChild(newTaskItem);
+            saveTasks(); // Speichern aktualisieren
         };
         newTaskItem.appendChild(deleteButton);
 
         taskList.appendChild(newTaskItem);
 
         taskInput.value = ''; // Textfeld leeren
+
+        saveTasks(); // Speichern aktualisieren
+    }
+
+    // Funktion zum Speichern der Aufgaben im Web Storage
+    function saveTasks() {
+        var tasks = [];
+        var taskList = document.getElementById('tasks').getElementsByTagName('label');
+
+        for (var i = 0; i < taskList.length; i++) {
+            tasks.push(taskList[i].textContent);
+        }
+
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    // Funktion zum Laden der gespeicherten Aufgaben beim Seitenaufruf
+    function loadTasks() {
+        var tasks = localStorage.getItem('tasks');
+
+        if (tasks) {
+            tasks = JSON.parse(tasks);
+
+            var taskList = document.getElementById('tasks');
+
+            for (var i = 0; i < tasks.length; i++) {
+                var newTaskItem = document.createElement('li');
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                newTaskItem.appendChild(checkbox);
+
+                var taskLabel = document.createElement('label');
+                taskLabel.textContent = tasks[i];
+                newTaskItem.appendChild(taskLabel);
+
+                var deleteButton = document.createElement('button');
+                deleteButton.className = 'delete';
+                deleteButton.textContent = 'Löschen';
+                deleteButton.onclick = function () {
+                    taskList.removeChild(newTaskItem);
+                    saveTasks(); // Speichern aktualisieren
+                };
+                newTaskItem.appendChild(deleteButton);
+
+                taskList.appendChild(newTaskItem);
+            }
+        }
     }
 </script>
 
