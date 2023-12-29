@@ -92,6 +92,16 @@
         button.delete:hover {
             background-color: #c0392b;
         }
+
+        button.deleteCompleted {
+            background-color: #2ecc71;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button.deleteCompleted:hover {
+            background-color: #27ae60;
+        }
     </style>
 </head>
 <body>
@@ -103,6 +113,7 @@
     </ul>
     <input type="text" id="newTask" placeholder="Neue Aufgabe">
     <button onclick="addTask()">Hinzufügen</button>
+    <button class="deleteCompleted" onclick="confirmDeleteCompleted()">Erledigte löschen</button>
 </div>
 
 <script>
@@ -143,6 +154,25 @@
         taskList.appendChild(newTaskItem);
 
         taskInput.value = ''; // Textfeld leeren
+
+        saveTasks(); // Speichern aktualisieren
+    }
+
+    function confirmDeleteCompleted() {
+        var confirmation = confirm('Sind Sie sicher, dass Sie alle erledigten Aufgaben löschen möchten?');
+
+        if (confirmation) {
+            deleteCompleted();
+        }
+    }
+
+    function deleteCompleted() {
+        var taskList = document.getElementById('tasks');
+        var completedTasks = taskList.querySelectorAll('input[type="checkbox"]:checked');
+
+        completedTasks.forEach(function (task) {
+            task.parentNode.parentNode.removeChild(task.parentNode);
+        });
 
         saveTasks(); // Speichern aktualisieren
     }
