@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do Liste</title>
+    <style>
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #todoList {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #3498db;
+            margin: 0;
+            padding: 20px;
+            background-color: #ecf0f1;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #ecf0f1;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        label {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            box-sizing: border-box;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button.delete {
+            background-color: #e74c3c;
+            width: 40%;
+            border-radius: 5px;
+        }
+
+        button.delete:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div id="todoList">
+    <h2>To-Do Liste</h2>
+    <ul id="tasks">
+        <!-- Hier werden die Aufgaben hinzugefügt -->
+    </ul>
+    <input type="text" id="newTask" placeholder="Neue Aufgabe">
+    <button onclick="addTask()">Hinzufügen</button>
+</div>
+
+<script>
+    function addTask() {
+        var taskInput = document.getElementById('newTask');
+        var taskText = taskInput.value;
+
+        if (taskText.trim() === '') {
+            alert('Bitte geben Sie eine Aufgabe ein.');
+            return;
+        }
+
+        var taskList = document.getElementById('tasks');
+
+        var newTaskItem = document.createElement('li');
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        newTaskItem.appendChild(checkbox);
+
+        var taskLabel = document.createElement('label');
+        taskLabel.textContent = taskText;
+        newTaskItem.appendChild(taskLabel);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.className = 'delete';
+        deleteButton.textContent = 'Löschen';
+        deleteButton.onclick = function () {
+            taskList.removeChild(newTaskItem);
+        };
+        newTaskItem.appendChild(deleteButton);
+
+        taskList.appendChild(newTaskItem);
+
+        taskInput.value = ''; // Textfeld leeren
+    }
+</script>
+
+</body>
+</html>
