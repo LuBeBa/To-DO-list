@@ -11,7 +11,7 @@
   {#if checked}
     <div
       transition:fade={{ duration: 100 }}
-      class="flex h-full w-full items-center justify-center bg-blue-400 text-white"
+      class="flex h-full w-full items-center justify-center bg-green-400 text-white"
     >
       <Checkmark />
     </div>

@@ -1,8 +1,8 @@
 <script lang="ts">
   const variants = {
-    primary: "bg-blue-500 hover:bg-blue-600 disabled:bg-blue-400",
-    secondary: "bg-gray-500 hover:bg-gray-600 disabled:bg-gray-400",
-    danger: "bg-red-500 hover:bg-red-600 disabled:bg-red-400",
+    primary: "bg-green-500 hover:bg-green-600 disabled:bg-green-500/70",
+    secondary: "bg-gray-500 hover:bg-gray-600 disabled:bg-gray-500/70",
+    danger: "bg-red-500 hover:bg-red-600 disabled:bg-red-500/70",
   } as const;
 
   type Variant = keyof typeof variants;
@@ -11,7 +11,7 @@
 </script>
 
 <button
-  class="h-10 rounded-md px-4 text-white transition-colors disabled:cursor-not-allowed {variants[
+  class="h-10 rounded-md px-4 text-white transition-colors disabled:cursor-not-allowed disabled:bg-opacity-70 {variants[
     variant
   ]}"
   {disabled}
