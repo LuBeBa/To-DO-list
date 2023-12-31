@@ -11,7 +11,7 @@
   let taskInput = "";
   let tasks: ITask[] = [];
 
-  // This prevents from a race condition where the tasks are resetted before they are loaded from localStorage
+  // This prevents from a race condition where the tasks are reset before they are loaded from localStorage
   $: loaded && localStorage.setItem("tasks", JSON.stringify(tasks));
 
   $: maxID = Math.max(...tasks.map((t) => t.id), 0);
