@@ -2,8 +2,6 @@
   import Checkbox from "./Checkbox.svelte";
   import type { Task } from "../types";
   import { createEventDispatcher } from "svelte";
-  import { fly } from "svelte/transition";
-  import { flip } from "svelte/animate";
   export let task: Task;
 
   const eventDispatcher = createEventDispatcher<{
