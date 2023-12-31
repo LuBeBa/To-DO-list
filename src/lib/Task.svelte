@@ -10,7 +10,7 @@
 </script>
 
 <div
-  class="flex items-center gap-2 rounded-md bg-gray-100 p-2 transition-colors"
+  class="flex items-center gap-2 rounded-md bg-gray-50 p-2 transition-colors hover:bg-gray-100"
 >
   <Checkbox bind:checked={task.done} />
   <span class="mr-auto text-lg">{task.text}</span>
