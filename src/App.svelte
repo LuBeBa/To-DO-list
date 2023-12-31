@@ -27,7 +27,7 @@
     class="flex w-full max-w-md flex-col overflow-hidden rounded-lg bg-white shadow-md"
   >
     <h1
-      class="w-full border-b border-gray-200 bg-gray-50 py-2 text-center text-3xl font-bold text-green-500"
+      class="w-full border-b border-gray-200 bg-gray-50 py-2 text-center text-3xl font-bold text-gray-600"
     >
       To-Do Liste
     </h1>
