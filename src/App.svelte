@@ -41,7 +41,7 @@
         />
       {/each}
       {#if tasks.length === 0}
-        <p class="flex h-8 items-center justify-center text-gray-500">
+        <p class="flex h-12 items-center justify-center text-gray-500">
           Keine Aufgaben vorhanden
         </p>
       {/if}

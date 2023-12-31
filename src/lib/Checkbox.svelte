@@ -5,7 +5,7 @@
 </script>
 
 <button
-  class="h-8 w-8 overflow-hidden rounded-md border border-gray-300"
+  class="h-8 w-8 overflow-hidden rounded-md border border-gray-300 bg-white transition-colors hover:bg-gray-100"
   on:click={() => (checked = !checked)}
 >
   {#if checked}

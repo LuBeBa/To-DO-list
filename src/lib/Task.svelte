@@ -11,7 +11,9 @@
   }>();
 </script>
 
-<div class="flex items-center gap-2 rounded-md">
+<div
+  class="flex items-center gap-2 rounded-md bg-gray-100 p-2 transition-colors"
+>
   <Checkbox bind:checked={task.done} />
   <span class="mr-auto text-lg">{task.text}</span>
   <button
